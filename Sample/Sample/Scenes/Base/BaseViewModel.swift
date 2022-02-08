@@ -8,38 +8,33 @@
 import Foundation
 
 
-typealias updateLoadingStatus = (_ status: Bool) -> Void
-typealias showAlertClosure = (_ message: String) -> Void
-typealias didFinishFetch = () -> Void
-
-struct BrokenRule {
-    var propertyName :String
-    var message :String
-}
-
-protocol ViewModelProtocol {
-    var brokenRules :[BrokenRule] { get set}
-    var isValid :Bool { mutating get }
+class Observable<T> {
+    typealias Listener = (T) -> Void
+    
+    var listener: Listener?
+    var value: T {
+        didSet {
+            listener?(value)
+        }
+    }
+    
+    init(_ v: T) {
+        value = v
+    }
+    
+    func bind(listener: Listener?) {
+        self.listener = listener
+    }
+    
+    func bindAndFire(listener: Listener?) {
+        self.listener = listener
+        listener?(value)
+    }
+    
 }
 
 
 class BaseViewModel {
     // MARK: - Properties
-    var error: String? {
-        didSet { self.showAlertClosure?(error ?? "") }
-    }
-    var isLoading: Bool = false {
-        didSet { self.loadingStatus?(isLoading) }
-    }
-    var infoMessage = ""
-    
-    
-    // MARK: - Closures for callback
-    var loadingStatus : updateLoadingStatus?
-    var showAlertClosure : showAlertClosure?
-    var didFinishFetch : didFinishFetch?
-    
-    
-    func apiRequest() {
-    }
+    var errorMessage = Observable("")
 }

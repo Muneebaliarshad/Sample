@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  Sample
+
+  Created by Muneeb on 08/02/2022.
+  
+*/
+
+
+//MARK: - Titles
+"Bread_Names_List" = "Bread Names List";
+
+
+//MARK: - UILabel
+"Breed_Name" = "Breed Name";
+"No_Result_Found" = "No Result Found";
+"Try_Again" = "Please Try Again Diffrent";
+"Sub_Breed" = "Sub Breed:";
+"Please_Wait" = "Please Wait";
+"Data_Is_Loading" = "Data Is Loading";
+
+
+//MARK: - UIButton
+"OK" = "OK";
